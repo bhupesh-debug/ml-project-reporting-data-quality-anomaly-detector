@@ -1,0 +1,315 @@
+{
+  "calibration_offset": 7.03,
+  "train_days": 887,
+  "test_days": 180,
+  "wape_seasonal_naive_lag7": 0.105,
+  "wape_rolling28": 0.379,
+  "wape_gbm_p50": 0.073,
+  "p95_coverage": 0.944,
+  "buffer_index": 2886.2,
+  "stress_table": [
+    {
+      "scenario": "Base (p50)",
+      "median_coverage": 1.06,
+      "worst_coverage": 1.01,
+      "share_of_windows_buffer_breached": 0.0,
+      "min_survival_days": 31
+    },
+    {
+      "scenario": "Mild stress (+25% first 10d)",
+      "median_coverage": 0.97,
+      "worst_coverage": 0.93,
+      "share_of_windows_buffer_breached": 0.793,
+      "min_survival_days": 29
+    },
+    {
+      "scenario": "Severe stress (p95, x1.4 first 10d)",
+      "median_coverage": 0.78,
+      "worst_coverage": 0.75,
+      "share_of_windows_buffer_breached": 1.0,
+      "min_survival_days": 22
+    }
+  ],
+  "regression": {
+    "r_squared": 0.9316,
+    "adj_r_squared": 0.9309,
+    "f_stat": 1572.42,
+    "f_pvalue": 0.0,
+    "n_obs": 887,
+    "benchmarks": {
+      "rolling_28d_mean": {
+        "wape": 0.379,
+        "mae": 36.05,
+        "rmse": 41.42,
+        "bias": -0.008
+      },
+      "seasonal_naive_lag7": {
+        "wape": 0.105,
+        "mae": 10.0,
+        "rmse": 14.64,
+        "bias": -0.008
+      },
+      "ols_regression": {
+        "wape": 0.087,
+        "mae": 8.29,
+        "rmse": 10.43,
+        "bias": -0.036
+      },
+      "quantile_reg_p50": {
+        "wape": 0.083,
+        "mae": 7.88,
+        "rmse": 10.11,
+        "bias": -0.021
+      }
+    },
+    "quantreg_p95_coverage": 0.878,
+    "quantreg_mean_interval_width": 13.3,
+    "coefficients": [
+      {
+        "Variable": "const",
+        "Coefficient": 44.94932358293158,
+        "Std_Error": 6.399259973967256,
+        "t_Statistic": 7.024144005055166,
+        "p_Value": 2.1538258062743095e-12,
+        "CI_Lower_95": 32.407004506247034,
+        "CI_Upper_95": 57.49164265961612,
+        "VIF": NaN
+      },
+      {
+        "Variable": "dow",
+        "Coefficient": -2.0286257843683893,
+        "Std_Error": 0.33187952862054443,
+        "t_Statistic": -6.112536656901864,
+        "p_Value": 9.80597731823051e-10,
+        "CI_Lower_95": -2.6790977076707865,
+        "CI_Upper_95": -1.378153861065992,
+        "VIF": 3.05
+      },
+      {
+        "Variable": "dom",
+        "Coefficient": 0.1417973065836608,
+        "Std_Error": 0.05011002907303083,
+        "t_Statistic": 2.829719104273599,
+        "p_Value": 0.004658888756031938,
+        "CI_Lower_95": 0.04358345433626534,
+        "CI_Upper_95": 0.24001115883105625,
+        "VIF": 1.72
+      },
+      {
+        "Variable": "month_end",
+        "Coefficient": 31.917330005352365,
+        "Std_Error": 2.322724062346779,
+        "t_Statistic": 13.741335237688325,
+        "p_Value": 5.740719498346054e-43,
+        "CI_Lower_95": 27.364874497128113,
+        "CI_Upper_95": 36.46978551357662,
+        "VIF": 1.36
+      },
+      {
+        "Variable": "market_stress",
+        "Coefficient": 5.85248262228748,
+        "Std_Error": 0.8491812382250938,
+        "t_Statistic": 6.891912301925061,
+        "p_Value": 5.504730816586221e-12,
+        "CI_Lower_95": 4.188117979019169,
+        "CI_Upper_95": 7.516847265555792,
+        "VIF": 1.6
+      },
+      {
+        "Variable": "lag1",
+        "Coefficient": 0.03329940650121321,
+        "Std_Error": 0.009751458733802246,
+        "t_Statistic": 3.414812840850659,
+        "p_Value": 0.0006382585148348451,
+        "CI_Lower_95": 0.014186898586232254,
+        "CI_Upper_95": 0.05241191441619417,
+        "VIF": 1.16
+      },
+      {
+        "Variable": "lag7",
+        "Coefficient": 0.4539606317458527,
+        "Std_Error": 0.03407032423471429,
+        "t_Statistic": 13.324223996768183,
+        "p_Value": 1.673639475823837e-40,
+        "CI_Lower_95": 0.38718402330421053,
+        "CI_Upper_95": 0.5207372401874949,
+        "VIF": 8.19
+      },
+      {
+        "Variable": "lag14",
+        "Coefficient": 0.4191131175973838,
+        "Std_Error": 0.0346599615661089,
+        "t_Statistic": 12.092140286941337,
+        "p_Value": 1.1621907814822322e-33,
+        "CI_Lower_95": 0.3511808412222679,
+        "CI_Upper_95": 0.4870453939724997,
+        "VIF": 8.13
+      },
+      {
+        "Variable": "roll7",
+        "Coefficient": 0.12910044973347579,
+        "Std_Error": 0.08451746200171936,
+        "t_Statistic": 1.5275003138505208,
+        "p_Value": 0.12663664923768553,
+        "CI_Lower_95": -0.036550731854626706,
+        "CI_Upper_95": 0.2947516313215783,
+        "VIF": 3.85
+      },
+      {
+        "Variable": "roll28",
+        "Coefficient": -0.5114609930065832,
+        "Std_Error": 0.09091644976561658,
+        "t_Statistic": -5.625615543998189,
+        "p_Value": 1.8484762637743213e-08,
+        "CI_Lower_95": -0.6896539601494367,
+        "CI_Upper_95": -0.33326802586372967,
+        "VIF": 2.78
+      }
+    ]
+  },
+  "simulations": {
+    "scenarios": [
+      {
+        "scenario": "Base (p50)",
+        "median_cumulative_outflow": 2732.8,
+        "median_coverage": 1.06,
+        "worst_coverage": 1.01,
+        "breach_rate_pct": 0.0,
+        "min_survival_days": 31
+      },
+      {
+        "scenario": "Mild Stress (+25% 10d)",
+        "median_cumulative_outflow": 2969.1,
+        "median_coverage": 0.97,
+        "worst_coverage": 0.93,
+        "breach_rate_pct": 79.3,
+        "min_survival_days": 29
+      },
+      {
+        "scenario": "Severe Stress (p95 x1.4 10d)",
+        "median_cumulative_outflow": 3715.1,
+        "median_coverage": 0.78,
+        "worst_coverage": 0.75,
+        "breach_rate_pct": 100.0,
+        "min_survival_days": 22
+      },
+      {
+        "scenario": "Extended Stress (p95 x1.25 20d)",
+        "median_cumulative_outflow": 3813.5,
+        "median_coverage": 0.76,
+        "worst_coverage": 0.74,
+        "breach_rate_pct": 100.0,
+        "min_survival_days": 21
+      },
+      {
+        "scenario": "Persistent Elevated (+15% 30d)",
+        "median_cumulative_outflow": 3142.7,
+        "median_coverage": 0.92,
+        "worst_coverage": 0.88,
+        "breach_rate_pct": 100.0,
+        "min_survival_days": 26
+      },
+      {
+        "scenario": "Capital Market Run (p95 x1.6 15d)",
+        "median_cumulative_outflow": 4258.1,
+        "median_coverage": 0.68,
+        "worst_coverage": 0.66,
+        "breach_rate_pct": 100.0,
+        "min_survival_days": 16
+      }
+    ],
+    "buffer_sensitivities": [
+      {
+        "buffer_multiplier": 0.8,
+        "buffer_amount": 2309.0,
+        "severe_stress_median_coverage": 0.62,
+        "severe_stress_breach_rate_pct": 100.0
+      },
+      {
+        "buffer_multiplier": 0.9,
+        "buffer_amount": 2597.6,
+        "severe_stress_median_coverage": 0.7,
+        "severe_stress_breach_rate_pct": 100.0
+      },
+      {
+        "buffer_multiplier": 1.0,
+        "buffer_amount": 2886.2,
+        "severe_stress_median_coverage": 0.78,
+        "severe_stress_breach_rate_pct": 100.0
+      },
+      {
+        "buffer_multiplier": 1.1,
+        "buffer_amount": 3174.9,
+        "severe_stress_median_coverage": 0.85,
+        "severe_stress_breach_rate_pct": 100.0
+      },
+      {
+        "buffer_multiplier": 1.2,
+        "buffer_amount": 3463.5,
+        "severe_stress_median_coverage": 0.93,
+        "severe_stress_breach_rate_pct": 100.0
+      },
+      {
+        "buffer_multiplier": 1.3,
+        "buffer_amount": 3752.1,
+        "severe_stress_median_coverage": 1.01,
+        "severe_stress_breach_rate_pct": 32.7
+      }
+    ],
+    "monte_carlo": {
+      "runs": 5000,
+      "base_buffer": 2886.2,
+      "base_median_outflow": 2734.5,
+      "base_p95_outflow": 2856.1,
+      "base_breach_probability_pct": 1.2,
+      "stressed_median_outflow": 3335.1,
+      "stressed_p95_outflow": 3571.5,
+      "stressed_breach_probability_pct": 100.0,
+      "reverse_stress": {
+        "required_buffer_zero_breach": 3914.8,
+        "buffer_shortfall_m": 1028.6
+      }
+    }
+  },
+  "business_case": [
+    {
+      "Scenario": "Conservative",
+      "Buffer_Carry_Optimization": "$1,200,000",
+      "Avoided_Emergency_Borrowing": "$400,000",
+      "Treasury_Labor_Savings": "$81,250",
+      "Total_Annual_Benefit": "$1,681,250",
+      "Implementation_Cost": "$280,000",
+      "Annual_Maintenance_Cost": "$70,000",
+      "Year1_Net_Benefit": "$1,331,250",
+      "Payback_Period_Months": 2.1,
+      "Three_Year_NPV": "$3,726,940",
+      "ROI_3Year_Pct": "1331.0%"
+    },
+    {
+      "Scenario": "Base",
+      "Buffer_Carry_Optimization": "$2,400,000",
+      "Avoided_Emergency_Borrowing": "$850,000",
+      "Treasury_Labor_Savings": "$112,500",
+      "Total_Annual_Benefit": "$3,362,500",
+      "Implementation_Cost": "$260,000",
+      "Annual_Maintenance_Cost": "$65,000",
+      "Year1_Net_Benefit": "$3,037,500",
+      "Payback_Period_Months": 0.9,
+      "Three_Year_NPV": "$7,940,394",
+      "ROI_3Year_Pct": "3054.0%"
+    },
+    {
+      "Scenario": "Upside",
+      "Buffer_Carry_Optimization": "$3,800,000",
+      "Avoided_Emergency_Borrowing": "$1,600,000",
+      "Treasury_Labor_Savings": "$150,000",
+      "Total_Annual_Benefit": "$5,550,000",
+      "Implementation_Cost": "$240,000",
+      "Annual_Maintenance_Cost": "$60,000",
+      "Year1_Net_Benefit": "$5,250,000",
+      "Payback_Period_Months": 0.5,
+      "Three_Year_NPV": "$13,412,817",
+      "ROI_3Year_Pct": "5589.0%"
+    }
+  ]
+}

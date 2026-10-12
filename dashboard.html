@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporting Data Quality Anomaly Detector | Quantitative Analysis Lab</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <span class="brand-badge">PROJECT 4</span>
+      <span>Reporting Data Quality Anomaly Detector</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">← Portfolio Overview</a></li>
+      <li><a href="budget-overrun.html" class="nav-link">Budget Overrun</a></li>
+      <li><a href="fpa-forecast.html" class="nav-link">FP&A Forecast</a></li>
+      <li><a href="liquidity-stress.html" class="nav-link">Liquidity Stress</a></li>
+      <li><a href="data-quality.html" class="nav-link active">Data Quality</a></li>
+      <li><a href="https://github.com/bhupesh-debug/ml-project-reporting-data-quality-anomaly-detector" target="_blank" class="nav-link" style="color:var(--accent-cyan)">GitHub Repo ↗</a></li>
+    </ul>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero Header -->
+    <section class="hero">
+      <div class="hero-tagline">
+        <span>★ FINANCIAL REPORTING INTEGRITY & SOX CONTROLS</span>
+      </div>
+      <h1 class="hero-title">Financial Ledger Anomaly Detection & Multi-Tier Control Lab</h1>
+      <p class="hero-desc">
+        Identifying corrupted general ledger journal entries prior to financial consolidation. Evaluating rule-based controls, Isolation Forests, supervised classifiers, and contra-account debit/credit direction checks across 24,000 ledger postings.
+      </p>
+      <div class="hero-meta">
+        <div><strong>Dataset:</strong> 24,000 Ledger Transactions (13.0% Synthetic Injection Rate)</div>
+        <div><strong>Holdout Test:</strong> 40% Stratified Split ($N=9,600, 1,264$ Corrupted Rows)</div>
+        <div><strong>Champion Architecture:</strong> Enhanced Hybrid (Contra Rules + IF, Recall 93.7%)</div>
+        <div><strong>Breakthrough Finding:</strong> Contra Logic unlocks 80.9% Sign-Flip Recall (vs 0% Legacy)</div>
+      </div>
+    </section>
+
+    <!-- Top KPI Row -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Enhanced Hybrid Recall</div>
+        <div class="kpi-value text-success">93.7%</div>
+        <div class="kpi-subtext"><span class="positive">+39.1% Defect Capture</span> vs 54.6% Baseline Rules</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Sign-Flip Capture Rate</div>
+        <div class="kpi-value text-success">80.9%</div>
+        <div class="kpi-subtext">Legacy amount rules & Isolation Forest caught 0.0%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Contra-Account Odds Ratio</div>
+        <div class="kpi-value">4.44x</div>
+        <div class="kpi-subtext">Statistically decisive signature ($p < 0.0001$)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Monthly Audit Triage Saved</div>
+        <div class="kpi-value">$33.6k</div>
+        <div class="kpi-subtext">Via upstream deduplication & schema NOT NULL gates</div>
+      </div>
+    </section>
+
+    <!-- Interactive Simulation Calculator -->
+    <section class="section">
+      <h2 class="section-title">Interactive Audit Queue Capacity & Defect Triage Simulator</h2>
+      <p class="section-desc">Adjust monthly transaction posting volumes, underlying defect prevalence, internal audit review capacity, and contra-account validation toggles to evaluate defect capture rates and residual financial reporting risk.</p>
+
+      <div class="simulator-card" id="sim-data-quality-form">
+        <div class="sim-header">
+          <h3>Internal Controls & Exception Queue Capacity Engine</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary);">Calculates trade-offs between accounting staff triage bandwidth, escape rates, and audit costs across five distinct ledger defect taxonomies.</p>
+        </div>
+
+        <div class="sim-grid">
+          <!-- Controls Pane -->
+          <div class="controls-pane">
+            <div class="control-group">
+              <label>Monthly Transaction Volume: <span class="val-display" id="val-p4-vol">24,000 rows</span></label>
+              <input type="range" id="p4-volume" min="10000" max="50000" step="2000" value="24000">
+            </div>
+
+            <div class="control-group">
+              <label>Underlying Defect Prevalence: <span class="val-display" id="val-p4-prev">13%</span></label>
+              <input type="range" id="p4-prevalence" min="3" max="25" step="1" value="13">
+            </div>
+
+            <div class="control-group">
+              <label>Internal Audit Review Capacity: <span class="val-display" id="val-p4-cap">3,000 reviews</span></label>
+              <input type="range" id="p4-capacity" min="500" max="6000" step="250" value="3000">
+            </div>
+
+            <div class="control-group" style="background:rgba(56, 189, 248, 0.08); padding:0.75rem; border-radius:var(--radius-sm); border:1px solid rgba(56, 189, 248, 0.2);">
+              <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                <input type="checkbox" id="p4-contra" checked style="width:1.2rem; height:1.2rem;">
+                <span style="font-weight:700; color:#38BDF8;">Enable Contra-Account Direction Checks</span>
+              </label>
+              <span style="font-size:0.75rem; color:var(--text-secondary); display:block; margin-top:0.25rem;">Validates normal debit/credit balance polarity per account group to uncover sign-flip breaks.</span>
+            </div>
+
+            <div class="control-group">
+              <label>Cost per Analyst Review ($):</label>
+              <input type="number" id="p4-cost-review" value="35" step="5">
+            </div>
+          </div>
+
+          <!-- Live Results Pane -->
+          <div class="results-pane">
+            <div class="sim-metrics-row">
+              <div class="sim-kpi">
+                <div class="label">Exception Queue Flagged</div>
+                <div class="val" id="res-p4-flagged">3,058</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="label">Captured Breaks</div>
+                <div class="val text-success" id="res-p4-captured">2,867</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="label">Escaped Reporting Defects</div>
+                <div class="val text-danger" id="res-p4-escaped">253</div>
+              </div>
+              <div class="sim-kpi">
+                <div class="label">Sign-Flip Capture Rate</div>
+                <div class="val text-success" id="res-p4-sign-recall">80.9%</div>
+              </div>
+            </div>
+
+            <div class="sim-metrics-row">
+              <div class="sim-kpi" style="grid-column: span 2;">
+                <div class="label">Monthly Audit Triage Budget</div>
+                <div class="val" id="res-p4-cost" style="color:var(--accent-cyan);">$105,000</div>
+              </div>
+              <div class="sim-kpi" style="grid-column: span 2;">
+                <div class="label">Queue Coverage Reliability</div>
+                <div class="val text-success">98.1% of Flagged Cleared</div>
+              </div>
+            </div>
+
+            <!-- Dynamic SVG Bar Chart -->
+            <div class="chart-box" id="p4-chart-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Analysis Tabs -->
+    <section class="section">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-target="tab-benchmarks">Detection Benchmarks</button>
+        <button class="tab-btn" data-target="tab-regression">Supervised Econometrics (Logit)</button>
+        <button class="tab-btn" data-target="tab-breakdown">Recall by Break Taxonomy</button>
+        <button class="tab-btn" data-target="tab-qa">Q&A Register (8 Questions)</button>
+        <button class="tab-btn" data-target="tab-recommendations">SOX Internal Controls Roadmap</button>
+      </div>
+
+      <!-- Tab 1: Detection Benchmarks -->
+      <div class="tab-pane active" id="tab-benchmarks">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Detection System</th>
+                <th>Validation Scheme</th>
+                <th>Overall Recall</th>
+                <th>Precision</th>
+                <th>Sign-Flip Recall</th>
+                <th>F1 Score</th>
+                <th>Operational Viability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original Business Rules</strong></td>
+                <td>Held-Out Test ($N=9,600$)</td>
+                <td>0.546</td>
+                <td>0.720</td>
+                <td><span class="badge badge-rose">0.0% (Blind)</span></td>
+                <td>0.621</td>
+                <td>Legacy baseline; misses directionality & duplicates</td>
+              </tr>
+              <tr>
+                <td><strong>Isolation Forest (Unsupervised)</strong></td>
+                <td>Held-Out Test ($N=9,600$)</td>
+                <td>0.272</td>
+                <td><strong class="text-success">0.910</strong></td>
+                <td><span class="badge badge-rose">0.0% (Blind)</span></td>
+                <td>0.419</td>
+                <td>High precision on extreme $z$-scores; low general recall</td>
+              </tr>
+              <tr>
+                <td><strong>Baseline Hybrid (Rules + IF)</strong></td>
+                <td>Held-Out Test ($N=9,600$)</td>
+                <td>0.756</td>
+                <td>0.780</td>
+                <td><span class="badge badge-rose">0.0% (Blind)</span></td>
+                <td>0.768</td>
+                <td>Combines rule bounds and isolation; sign flips still escape</td>
+              </tr>
+              <tr>
+                <td><strong>Enhanced Multi-Tier Hybrid</strong></td>
+                <td>Held-Out Test ($N=9,600$)</td>
+                <td><strong class="text-success">0.937</strong></td>
+                <td>0.732</td>
+                <td><strong class="text-success">80.9%</strong></td>
+                <td><strong class="text-success">0.822</strong></td>
+                <td><span class="badge badge-emerald">Champion Architecture</span> (Contra-account enabled)</td>
+              </tr>
+              <tr>
+                <td><strong>Supervised Random Forest</strong></td>
+                <td>Held-Out Test ($N=9,600$)</td>
+                <td>0.841</td>
+                <td>0.565</td>
+                <td>76.4%</td>
+                <td>0.676</td>
+                <td>High false-positive rate; complex retraining maintenance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem; margin-top:1.5rem;">
+          <div class="chart-box">
+            <img src="outputs/p4_recall_by_break_type.png" alt="Recall by Defect Category" style="max-width:100%; height:auto; border-radius:var(--radius-sm);">
+          </div>
+          <div class="chart-box">
+            <img src="outputs/p4_anomaly_detection_simulation.png" alt="Exception Queue Simulation" style="max-width:100%; height:auto; border-radius:var(--radius-sm);">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Supervised Econometrics (Logit) -->
+      <div class="tab-pane" id="tab-regression">
+        <h3 style="margin-bottom:0.75rem;">Logistic Regression Parameters & Odds Ratios ($N=14,400$ Train)</h3>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.25rem;">
+          Estimates the probability that a journal line represents a posting error. Confirms that structural schema indicators and polarity mismatches dwarf raw monetary magnitude.
+        </p>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Feature Name</th>
+                <th>Coefficient ($\beta$)</th>
+                <th>Odds Ratio</th>
+                <th>Std Error</th>
+                <th>$z$-Statistic</th>
+                <th>$p$-Value</th>
+                <th>95% Confidence Interval</th>
+                <th>Accounting Attribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>`missing_entity`</strong></td>
+                <td>+6.9933</td>
+                <td><strong class="text-danger">1,089.31x</strong></td>
+                <td>0.3978</td>
+                <td>+17.58</td>
+                <td>&lt; 0.0001</td>
+                <td>[+6.2136, +7.7730]</td>
+                <td>Broken entity foreign key; immediate schema violation</td>
+              </tr>
+              <tr>
+                <td><strong>`dup_key_count`</strong></td>
+                <td>+3.7372</td>
+                <td><strong class="text-danger">41.98x</strong></td>
+                <td>0.0985</td>
+                <td>+37.95</td>
+                <td>&lt; 0.0001</td>
+                <td>[+3.5442, +3.9302]</td>
+                <td>Duplicate journal batch submission</td>
+              </tr>
+              <tr>
+                <td><strong>`sign_vs_acct`</strong></td>
+                <td>+1.4898</td>
+                <td><strong class="text-success">4.44x</strong></td>
+                <td>0.2214</td>
+                <td>+6.73</td>
+                <td>&lt; 0.0001</td>
+                <td>[+1.0558, +1.9238]</td>
+                <td>Contra polarity break (e.g. credit to cash / debit to revenue)</td>
+              </tr>
+              <tr>
+                <td><strong>`ratio_to_median`</strong></td>
+                <td>+0.8525</td>
+                <td><strong>2.35x</strong></td>
+                <td>0.1431</td>
+                <td>+5.96</td>
+                <td>&lt; 0.0001</td>
+                <td>[+0.5721, +1.1330]</td>
+                <td>Magnitude distortion relative to account cohort norm</td>
+              </tr>
+              <tr>
+                <td><strong>`posting_lag_days`</strong></td>
+                <td>+0.1121</td>
+                <td><strong>1.12x</strong></td>
+                <td>0.0045</td>
+                <td>+24.91</td>
+                <td>&lt; 0.0001</td>
+                <td>[+0.1033, +0.1210]</td>
+                <td>Stale post-close manual adjustment (+12% risk / day)</td>
+              </tr>
+              <tr>
+                <td><strong>`log_abs_amount`</strong></td>
+                <td>-0.0910</td>
+                <td>0.91x</td>
+                <td>0.0368</td>
+                <td>-2.47</td>
+                <td>0.0134</td>
+                <td>[-0.1632, -0.0189]</td>
+                <td>Raw transaction size is non-predictive in isolation</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Recall by Break Taxonomy -->
+      <div class="tab-pane" id="tab-breakdown">
+        <h3 style="margin-bottom:0.75rem;">Granular Defect Taxonomy Capture Performance ($N=1,264$ Corrupted Rows)</h3>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.25rem;">
+          General ledger errors span fundamentally distinct data-generating mechanisms. Unsupervised algorithms excel at magnitude outliers but fail entirely on sign flips and duplicates.
+        </p>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Defect Taxonomy Type</th>
+                <th>Test Occurrences</th>
+                <th>Original Rules</th>
+                <th>Isolation Forest</th>
+                <th>Enhanced Hybrid</th>
+                <th>Primary Root Cause</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sign-Flip Breaks</strong></td>
+                <td>256 rows</td>
+                <td><span class="badge badge-rose">0.0% (0 / 256)</span></td>
+                <td><span class="badge badge-rose">0.0% (0 / 256)</span></td>
+                <td><strong class="text-success">80.9% (207 / 256)</strong></td>
+                <td>Inverted debit/credit polarity on subledger feed</td>
+              </tr>
+              <tr>
+                <td><strong>Magnitude Outliers</strong></td>
+                <td>384 rows</td>
+                <td>82.3% (316 / 384)</td>
+                <td><strong class="text-success">88.5% (340 / 384)</strong></td>
+                <td><strong class="text-success">98.2% (377 / 384)</strong></td>
+                <td>Decimal transposition / fat-finger manual journal entry</td>
+              </tr>
+              <tr>
+                <td><strong>Duplicate Postings</strong></td>
+                <td>288 rows</td>
+                <td>35.4% (102 / 288)</td>
+                <td>12.5% (36 / 288)</td>
+                <td><strong class="text-success">99.3% (286 / 288)</strong></td>
+                <td>ETL retry loop without idempotency keys</td>
+              </tr>
+              <tr>
+                <td><strong>Stale Postings (&gt;45 Days)</strong></td>
+                <td>192 rows</td>
+                <td><strong class="text-success">94.8% (182 / 192)</strong></td>
+                <td>18.8% (36 / 192)</td>
+                <td><strong class="text-success">96.4% (185 / 192)</strong></td>
+                <td>Backdated accounting adjustments bypassing period locks</td>
+              </tr>
+              <tr>
+                <td><strong>Missing Entity Foreign Keys</strong></td>
+                <td>144 rows</td>
+                <td>61.1% (88 / 144)</td>
+                <td>0.0% (0 / 144)</td>
+                <td><strong class="text-success">90.3% (130 / 144)</strong></td>
+                <td>Unmapped cost center or missing corporate division ID</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Q&A Register -->
+      <div class="tab-pane" id="tab-qa">
+        <div class="qa-item open">
+          <div class="qa-header">
+            <div><span class="qa-id">Q-P4-001</span> Which detector performs best overall?</div>
+            <span>▾</span>
+          </div>
+          <div class="qa-content">
+            <strong>Direct Answer:</strong> The **Enhanced Multi-Tier Hybrid (Enhanced Rules + Contra Logic + Isolation Forest)** performs best, capturing **93.7% of all corrupted rows** (1,184 / 1,264), outperforming original rules (54.6%) and Isolation Forest alone (27.2%).<br>
+            <strong>Evidence:</strong> 40% held-out test split evaluation across 9,600 transactions.
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-header">
+            <div><span class="qa-id">Q-P4-002</span> Why are sign flips difficult to identify using magnitude alone?</div>
+            <span>▾</span>
+          </div>
+          <div class="qa-content">
+            <strong>Direct Answer:</strong> A sign flip produces a standard monetary amount; without account debit/credit context, amount-only algorithms see an ordinary transaction (0% recall). Adding an account-level direction check (`sign_vs_acct`, Odds Ratio 4.44x, $p < 0.0001$) elevated sign-flip recall to **80.9%**.<br>
+            <strong>Evidence:</strong> Econometric Logit regression ($z=6.73, p < 0.0001$).
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-header">
+            <div><span class="qa-id">Q-P4-003</span> Which controls should be implemented upstream?</div>
+            <span>▾</span>
+          </div>
+          <div class="qa-content">
+            <strong>Direct Answer:</strong> Upstream primary-key deduplication and NOT NULL constraints on mandatory entity keys eliminate 100% of duplicates (720 rows) and 100% of missing keys (240 rows) at zero analyst triage cost, saving $33,600/month in review labor.<br>
+            <strong>Evidence:</strong> Root-cause taxonomy analysis and audit queue capacity simulation.
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-header">
+            <div><span class="qa-id">Q-P4-004</span> What audit trail and escalation controls should be implemented?</div>
+            <span>▾</span>
+          </div>
+          <div class="qa-content">
+            <strong>Direct Answer:</strong> Implement SOX 404 audit logging capturing transaction ID, timestamp, model break probability score, triggered rule names, reviewing analyst signature, and remediation reason code.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Recommendations -->
+      <div class="tab-pane" id="tab-recommendations">
+        <h3 style="margin-bottom:0.75rem;">SOX Financial Reporting Internal Controls Roadmap</h3>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1.25rem;">
+          Hardening General Ledger staging tables and exception workflows across 12 weeks.
+        </p>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Timeframe</th>
+                <th>Key Deliverables</th>
+                <th>Owner</th>
+                <th>Compliance Objective</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sprint 1: Upstream Hard Schema Gates</strong></td>
+                <td>Weeks 1–3</td>
+                <td>Embed NOT NULL constraints on `entity_id` and unique idempotency keys</td>
+                <td>Data Engineering Lead</td>
+                <td>Zero duplicate or orphaned records staged</td>
+              </tr>
+              <tr>
+                <td><strong>Sprint 2: Contra-Account Master Table</strong></td>
+                <td>Weeks 4–6</td>
+                <td>Deploy normal-polarity reference table (`normal_debit_credit`)</td>
+                <td>Chief Accounting Officer</td>
+                <td>Automate detection of reversed polarity entries</td>
+              </tr>
+              <tr>
+                <td><strong>Sprint 3: Hybrid Exception Queue</strong></td>
+                <td>Weeks 7–9</td>
+                <td>Route multi-tier scores to Controller triage queue capped at 3,000/mo</td>
+                <td>Internal Controls Manager</td>
+                <td>93.7% defect capture prior to month-end close</td>
+              </tr>
+              <tr>
+                <td><strong>Sprint 4: SOX 404 Attestation</strong></td>
+                <td>Weeks 10–12</td>
+                <td>Publish formal model validation card and automated audit trail export</td>
+                <td>Director of Internal Audit</td>
+                <td>Clean external auditor IT General Controls (ITGC) sign-off</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Reporting Data Quality Anomaly Detector | Lead Architect: <strong>Bhupesh Chandra Dimri</strong> (bhupesh7cd@gmail.com)</p>
+    <p style="margin-top:0.5rem; font-size:0.78rem;"><a href="../index.html">← Return to Master Executive Dashboard</a> | <a href="https://github.com/bhupesh-debug/ml-project-reporting-data-quality-anomaly-detector" target="_blank">GitHub Repository</a></p>
+  </footer>
+
+  <script src="assets/dashboard.js"></script>
+</body>
+</html>

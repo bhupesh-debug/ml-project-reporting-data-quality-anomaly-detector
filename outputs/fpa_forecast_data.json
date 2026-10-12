@@ -1,0 +1,290 @@
+{
+  "origins": 9,
+  "units": 8,
+  "total_months": 72,
+  "backtest_results": {
+    "seasonal_naive": {
+      "1": {
+        "wape": 0.105,
+        "bias": -0.104
+      },
+      "2": {
+        "wape": 0.106,
+        "bias": -0.105
+      },
+      "3": {
+        "wape": 0.105,
+        "bias": -0.104
+      }
+    },
+    "trend_adjusted_naive": {
+      "1": {
+        "wape": 0.117,
+        "bias": -0.012
+      },
+      "2": {
+        "wape": 0.119,
+        "bias": -0.017
+      },
+      "3": {
+        "wape": 0.127,
+        "bias": -0.017
+      }
+    },
+    "driver_gbm": {
+      "1": {
+        "wape": 0.062,
+        "bias": -0.015
+      },
+      "2": {
+        "wape": 0.092,
+        "bias": -0.013
+      },
+      "3": {
+        "wape": 0.117,
+        "bias": -0.033
+      }
+    }
+  },
+  "regression": {
+    "r_squared": 0.9791,
+    "adj_r_squared": 0.9788,
+    "f_stat": 3250.01,
+    "f_pvalue": 0.0,
+    "n_obs": 480,
+    "linear_models_backtest": {
+      "ols": {
+        "1": {
+          "wape": 0.045,
+          "bias": -0.005
+        },
+        "2": {
+          "wape": 0.055,
+          "bias": -0.009
+        },
+        "3": {
+          "wape": 0.06,
+          "bias": -0.008
+        }
+      },
+      "ridge": {
+        "1": {
+          "wape": 0.045,
+          "bias": -0.008
+        },
+        "2": {
+          "wape": 0.056,
+          "bias": -0.015
+        },
+        "3": {
+          "wape": 0.059,
+          "bias": -0.018
+        }
+      },
+      "lasso": {
+        "1": {
+          "wape": 0.044,
+          "bias": -0.007
+        },
+        "2": {
+          "wape": 0.055,
+          "bias": -0.014
+        },
+        "3": {
+          "wape": 0.059,
+          "bias": -0.017
+        }
+      }
+    },
+    "coefficients": [
+      {
+        "Variable": "const",
+        "Coefficient": -0.2099980682283631,
+        "Std_Error": 1.7442014576316878,
+        "t_Statistic": -0.12039782865076992,
+        "p_Value": 0.9041680113769175,
+        "CI_Lower_95": -3.628570106968736,
+        "CI_Upper_95": 3.2085739705120098,
+        "VIF": NaN
+      },
+      {
+        "Variable": "rev_lag0",
+        "Coefficient": 0.9279320961418736,
+        "Std_Error": 0.08026048356181585,
+        "t_Statistic": 11.561506422113558,
+        "p_Value": 6.456606080965916e-31,
+        "CI_Lower_95": 0.7706244389789454,
+        "CI_Upper_95": 1.0852397533048017,
+        "VIF": 72.17
+      },
+      {
+        "Variable": "same_month_last_year",
+        "Coefficient": 0.4852629943661677,
+        "Std_Error": 0.043829473559503625,
+        "t_Statistic": 11.071613573167074,
+        "p_Value": 1.7227043412286549e-28,
+        "CI_Lower_95": 0.39935880472819,
+        "CI_Upper_95": 0.5711671840041453,
+        "VIF": 19.56
+      },
+      {
+        "Variable": "sales_headcount_now",
+        "Coefficient": -0.030407258837305932,
+        "Std_Error": 0.010707706061678885,
+        "t_Statistic": -2.839754720773341,
+        "p_Value": 0.0045148233817740805,
+        "CI_Lower_95": -0.05139397707523777,
+        "CI_Upper_95": -0.009420540599374094,
+        "VIF": 1.42
+      },
+      {
+        "Variable": "marketing_spend_now",
+        "Coefficient": -0.018346616916095848,
+        "Std_Error": 0.14172262702434818,
+        "t_Statistic": -0.1294543948366401,
+        "p_Value": 0.8969981088749193,
+        "CI_Lower_95": -0.29611786167822124,
+        "CI_Upper_95": 0.25942462784602954,
+        "VIF": 1.27
+      },
+      {
+        "Variable": "price_index_now",
+        "Coefficient": 2.139550461190268,
+        "Std_Error": 1.6297148393357035,
+        "t_Statistic": 1.3128373194800025,
+        "p_Value": 0.1892377716891136,
+        "CI_Lower_95": -1.0546319289781914,
+        "CI_Upper_95": 5.333732851358727,
+        "VIF": 1.34
+      },
+      {
+        "Variable": "roll3",
+        "Coefficient": -0.3838379212278267,
+        "Std_Error": 0.05373720136804402,
+        "t_Statistic": -7.142871445778048,
+        "p_Value": 9.140110169818058e-13,
+        "CI_Lower_95": -0.4891609005391695,
+        "CI_Upper_95": -0.27851494191648385,
+        "VIF": 35.86
+      }
+    ]
+  },
+  "simulations": {
+    "scenarios": {
+      "sensitivity": {
+        "base_forecast_m": 247.62,
+        "actual_revenue_m": 243.52,
+        "headcount_plus_20pct": 246.84,
+        "headcount_minus_20pct": 249.1,
+        "marketing_plus_50pct": 246.14,
+        "marketing_minus_50pct": 246.63,
+        "price_plus_10pct": 247.34,
+        "price_minus_10pct": 247.12,
+        "stale_driver_reporting": 247.74,
+        "demand_shock_minus_18pct": 228.58
+      }
+    },
+    "blending": {
+      "horizon_1m": {
+        "optimal_gbm_weight": 0.8,
+        "optimal_wape": 0.061,
+        "pure_gbm_wape": 0.0617,
+        "pure_seasonal_wape": 0.1052,
+        "weight_curve": {
+          "w_gbm_0.0": 0.1052,
+          "w_gbm_0.2": 0.0888,
+          "w_gbm_0.4": 0.0754,
+          "w_gbm_0.5": 0.0692,
+          "w_gbm_0.6": 0.0644,
+          "w_gbm_0.8": 0.061,
+          "w_gbm_1.0": 0.0617
+        }
+      },
+      "horizon_2m": {
+        "optimal_gbm_weight": 0.6,
+        "optimal_wape": 0.078,
+        "pure_gbm_wape": 0.0923,
+        "pure_seasonal_wape": 0.106,
+        "weight_curve": {
+          "w_gbm_0.0": 0.106,
+          "w_gbm_0.2": 0.0894,
+          "w_gbm_0.4": 0.0801,
+          "w_gbm_0.5": 0.0783,
+          "w_gbm_0.6": 0.078,
+          "w_gbm_0.8": 0.0829,
+          "w_gbm_1.0": 0.0923
+        }
+      },
+      "horizon_3m": {
+        "optimal_gbm_weight": 0.4,
+        "optimal_wape": 0.0891,
+        "pure_gbm_wape": 0.1172,
+        "pure_seasonal_wape": 0.1047,
+        "weight_curve": {
+          "w_gbm_0.0": 0.1047,
+          "w_gbm_0.2": 0.092,
+          "w_gbm_0.4": 0.0891,
+          "w_gbm_0.5": 0.0913,
+          "w_gbm_0.6": 0.0947,
+          "w_gbm_0.8": 0.1037,
+          "w_gbm_1.0": 0.1172
+        }
+      }
+    },
+    "monte_carlo": {
+      "runs": 5000,
+      "mean_revenue_m": 247.33,
+      "std_revenue_m": 3.32,
+      "p05_downside_m": 241.91,
+      "p25_m": 245.09,
+      "p50_median_m": 247.38,
+      "p75_m": 249.53,
+      "p95_upside_m": 252.89,
+      "var_95_downside_m": 5.71
+    }
+  },
+  "business_case": [
+    {
+      "Scenario": "Conservative",
+      "WAPE_Improvement_Pts": 2.2,
+      "Working_Capital_Optimization": "$1,100,000",
+      "Expediting_Cost_Savings": "$450,000",
+      "Analyst_Labor_Savings": "$85,000",
+      "Total_Annual_Benefit": "$1,635,000",
+      "Implementation_Cost": "$260,000",
+      "Annual_Maintenance_Cost": "$65,000",
+      "Year1_Net_Benefit": "$1,310,000",
+      "Payback_Period_Months": 2.0,
+      "Three_Year_NPV": "$3,644,358",
+      "ROI_3Year_Pct": "1402.0%"
+    },
+    {
+      "Scenario": "Base",
+      "WAPE_Improvement_Pts": 3.8,
+      "Working_Capital_Optimization": "$2,100,000",
+      "Expediting_Cost_Savings": "$850,000",
+      "Analyst_Labor_Savings": "$120,000",
+      "Total_Annual_Benefit": "$3,070,000",
+      "Implementation_Cost": "$240,000",
+      "Annual_Maintenance_Cost": "$60,000",
+      "Year1_Net_Benefit": "$2,770,000",
+      "Payback_Period_Months": 1.0,
+      "Three_Year_NPV": "$7,245,424",
+      "ROI_3Year_Pct": "3019.0%"
+    },
+    {
+      "Scenario": "Upside",
+      "WAPE_Improvement_Pts": 4.5,
+      "Working_Capital_Optimization": "$3,200,000",
+      "Expediting_Cost_Savings": "$1,400,000",
+      "Analyst_Labor_Savings": "$150,000",
+      "Total_Annual_Benefit": "$4,750,000",
+      "Implementation_Cost": "$220,000",
+      "Annual_Maintenance_Cost": "$55,000",
+      "Year1_Net_Benefit": "$4,475,000",
+      "Payback_Period_Months": 0.6,
+      "Three_Year_NPV": "$11,455,770",
+      "ROI_3Year_Pct": "5207.0%"
+    }
+  ]
+}
