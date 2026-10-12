@@ -1,0 +1,14 @@
+Requirement_ID,Category,Requirement_Description,Implementation_File,Validation_Artifact,Status
+REQ-DQ-001,Architecture,Synthetic 24000-row reporting feed across 5 source systems with 5 injected defect types,src/data_pipeline.py,data/synthetic/reporting_feed.csv,VERIFIED
+REQ-DQ-002,Feature Engineering,GL account statistical standard scores and normal direction indicators,src/feature_engineering.py,tests/test_pipeline.py,VERIFIED
+REQ-DQ-003,Rule Detection,Deterministic controls catching duplicates missing entity keys and stale postings,src/model.py,reports/results.json,VERIFIED
+REQ-DQ-004,Unsupervised ML,Isolation Forest detecting magnitude x10 decimal errors without labels,src/model.py,reports/results.json,VERIFIED
+REQ-DQ-005,Sign-Flip Fix,Contra-account normal direction control resolving the 0% sign flip blindspot,src/regression_analysis.py,reports/results.json,VERIFIED
+REQ-DQ-006,Econometrics,Logistic regression estimating defect odds ratios standard errors and VIF,src/regression_analysis.py,reports/regression_coefficients.csv,VERIFIED
+REQ-DQ-007,Supervised ML,Supervised Random Forest evaluated on 40% held-out test split,src/regression_analysis.py,reports/results.json,VERIFIED
+REQ-DQ-008,Stress Testing,Prevalence stress magnitude sensitivity and contamination threshold optimization,src/simulation.py,reports/simulation_report.md,VERIFIED
+REQ-DQ-009,Capacity Sizing,Analyst review capacity constraints and false-positive triage cost modeling,src/simulation.py,reports/simulation_report.md,VERIFIED
+REQ-DQ-010,Monte Carlo,5000-run Monte Carlo simulation quantifying daily exception queue arrivals,src/simulation.py,reports/anomaly_detection_simulation.png,VERIFIED
+REQ-DQ-011,Business Case,Corporate finance business case with avoided audit penalties and 3-year NPV,src/business_case.py,reports/business_case_table.csv,VERIFIED
+REQ-DQ-012,Testing,Automated pytest regression test suite for pipelines and metrics,tests/test_pipeline.py,reports/test_log.txt,VERIFIED
+REQ-DQ-013,Executive Deck,10-slide PowerPoint executive presentation generated via python-pptx,slides/generate_deck.py,slides/project_deck.pptx,VERIFIED
