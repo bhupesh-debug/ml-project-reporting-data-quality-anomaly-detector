@@ -1,0 +1,5 @@
+Project,Dataset_File,Total_Rows,Columns,Grain,Missing_Values,Duplicates,Outlier_Issues,Class_Imbalance_Prevalence,Leakage_Risk,Synthetic_Mechanism
+P1: Budget Overrun,data/synthetic/budget_checkpoints.csv,3200,14,Budget Line - Mid-Year,0,0,Skewed non-labor contracts,25.0% Overruns,Zero (Mid-year cutoff),Log-normal expenditure + variance shocks
+P2: FP&A Rolling Forecast,data/synthetic/monthly_revenue.csv,576,7,Business Unit - Month,0,0,Demand shock t=30 to 33 (-18%),Balanced 8 BUs x 72 Mos,Zero (Strict rolling lag alignment),Sinusoidal seasonality + trend + driver drift
+P3: Liquidity Stress,data/synthetic/daily_outflow.csv,1095,3,Daily Cash Ledger,0,0,Month-end settlement surge (+35%),100% Continuous Series,Zero (Chronological 180d holdout),AR(1) market stress + weekday/month-end multipliers
+P4: Reporting Data Quality,data/synthetic/reporting_feed.csv,24000,9,Journal Transaction Entry,240,720,720 magnitude x10 + 720 sign flips,"13.0% Injected Breaks (3,120 rows)",Controlled (Holdout split 60/40),Log-normal chart of accounts + injected corruption

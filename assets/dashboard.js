@@ -53,6 +53,8 @@ function initBudgetOverrunSim() {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", runBudgetSim);
   });
+  const dlBtn = document.getElementById("btn-p1-download");
+  if (dlBtn) dlBtn.addEventListener("click", exportBudgetSimCSV);
   runBudgetSim();
 }
 
@@ -115,6 +117,8 @@ function initFPASim() {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", runFPASim);
   });
+  const dlBtn = document.getElementById("btn-p2-download");
+  if (dlBtn) dlBtn.addEventListener("click", exportFPASimCSV);
   runFPASim();
 }
 
@@ -174,6 +178,8 @@ function initLiquiditySim() {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", runLiquiditySim);
   });
+  const dlBtn = document.getElementById("btn-p3-download");
+  if (dlBtn) dlBtn.addEventListener("click", exportLiquiditySimCSV);
   runLiquiditySim();
 }
 
@@ -242,6 +248,8 @@ function initDataQualitySim() {
     const el = document.getElementById(id);
     if (el) el.addEventListener("input", runDataQualitySim);
   });
+  const dlBtn = document.getElementById("btn-p4-download");
+  if (dlBtn) dlBtn.addEventListener("click", exportDataQualitySimCSV);
   runDataQualitySim();
 }
 
@@ -368,3 +376,126 @@ function renderSVGLiquidityCurve(containerId, bufferRemaining, initialBuffer) {
     </svg>
   `;
 }
+
+// ==========================================
+// Dynamic CSV Export Utilities
+// ==========================================
+function triggerCSVDownload(filename, csvText) {
+  const blob = new Blob([csvText], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function exportBudgetSimCSV() {
+  const units = document.getElementById("p1-units").value;
+  const cap = document.getElementById("p1-capacity").value;
+  const th = document.getElementById("p1-threshold").value;
+  const eff = document.getElementById("p1-effectiveness").value;
+  const flagged = document.getElementById("res-p1-flagged").textContent;
+  const tp = document.getElementById("res-p1-tp").textContent;
+  const fp = document.getElementById("res-p1-fp").textContent;
+  const recall = document.getElementById("res-p1-recall").textContent;
+  const prec = document.getElementById("res-p1-precision").textContent;
+  const avoided = document.getElementById("res-p1-avoided").textContent;
+  const net = document.getElementById("res-p1-net").textContent;
+
+  const csv = "Metric,Value\n" +
+    `Units Monitored,${units}\n` +
+    `Review Capacity Pct,${cap}%\n` +
+    `Probability Threshold,${th}\n` +
+    `Intervention Effectiveness,${eff}%\n` +
+    `Lines Flagged & Reviewed,${flagged}\n` +
+    `True Overruns Caught,${tp}\n` +
+    `False Alarms,${fp}\n` +
+    `Capture Rate (Recall),${recall}\n` +
+    `Review Precision,${prec}\n` +
+    `Mitigated Overrun Loss,${avoided}\n` +
+    `Net Realized Benefit,${net}\n`;
+
+  triggerCSVDownload("budget_overrun_simulation_export.csv", csv);
+}
+
+function exportFPASimCSV() {
+  const hor = document.getElementById("p2-horizon").value;
+  const hc = document.getElementById("p2-hc-shock").value;
+  const mkt = document.getElementById("p2-mkt-shock").value;
+  const pr = document.getElementById("p2-price-shock").value;
+  const blend = document.getElementById("p2-blend-weight").value;
+  const fcast = document.getElementById("res-p2-forecast").textContent;
+  const base = document.getElementById("res-p2-baseline").textContent;
+  const wape = document.getElementById("res-p2-wape").textContent;
+  const p05 = document.getElementById("res-p2-p05").textContent;
+  const p95 = document.getElementById("res-p2-p95").textContent;
+
+  const csv = "Parameter,Value\n" +
+    `Forecast Horizon (Months),${hor}\n` +
+    `Sales Headcount Shock Pct,${hc}%\n` +
+    `Marketing Spend Shock Pct,${mkt}%\n` +
+    `Price Index Shock Pct,${pr}%\n` +
+    `ML Blending Weight Pct,${blend}%\n` +
+    `Adjusted Monthly Forecast,${fcast}\n` +
+    `Seasonal Naive Baseline,${base}\n` +
+    `Expected Horizon WAPE,${wape}\n` +
+    `P05 Downside Floor,${p05}\n` +
+    `P95 Upside Potential,${p95}\n`;
+
+  triggerCSVDownload("fpa_rolling_forecast_simulation_export.csv", csv);
+}
+
+function exportLiquiditySimCSV() {
+  const buffer = parseFloat(document.getElementById("p3-buffer").value) || 2886.2;
+  const scenario = document.getElementById("p3-scenario").value;
+  const stressMult = parseFloat(document.getElementById("p3-stress-mult").value) || 1.25;
+  const duration = parseInt(document.getElementById("p3-duration").value) || 10;
+
+  let csv = "Day,Daily_Outflow_Units,Cumulative_Outflow_Units,Remaining_Buffer_Units,Buffer_Status\n";
+  let cum = 0;
+  for (let d = 1; d <= 30; d++) {
+    let rate = 98.4;
+    if (d % 7 === 6 || d % 7 === 0) rate *= 0.35;
+    else rate *= 1.12;
+    if (d >= 28 && d <= 30) rate += 31.9;
+    if (d <= duration) {
+      if (scenario === "severe") rate = rate * 1.25 * stressMult;
+      else if (scenario === "mild") rate *= stressMult;
+    }
+    cum += rate;
+    const rem = buffer - cum;
+    const status = rem >= 0 ? "SURVIVED" : "BREACHED";
+    csv += `${d},${rate.toFixed(2)},${cum.toFixed(2)},${rem.toFixed(2)},${status}\n`;
+  }
+
+  triggerCSVDownload("liquidity_stress_30day_simulation_export.csv", csv);
+}
+
+function exportDataQualitySimCSV() {
+  const vol = document.getElementById("p4-volume").value;
+  const prev = document.getElementById("p4-prevalence").value;
+  const cap = document.getElementById("p4-capacity").value;
+  const contra = document.getElementById("p4-contra").checked;
+  const flagged = document.getElementById("res-p4-flagged").textContent;
+  const captured = document.getElementById("res-p4-captured").textContent;
+  const escaped = document.getElementById("res-p4-escaped").textContent;
+  const signRec = document.getElementById("res-p4-sign-recall").textContent;
+  const cost = document.getElementById("res-p4-cost").textContent;
+
+  const csv = "Metric,Value\n" +
+    `Monthly Transaction Volume,${vol}\n` +
+    `Defect Prevalence Pct,${prev}%\n` +
+    `Audit Review Capacity,${cap}\n` +
+    `Contra-Account Check Enabled,${contra}\n` +
+    `Exception Queue Flagged,${flagged}\n` +
+    `Captured Reporting Defects,${captured}\n` +
+    `Escaped Reporting Defects,${escaped}\n` +
+    `Sign-Flip Recall Rate,${signRec}\n` +
+    `Monthly Triage Cost,${cost}\n`;
+
+  triggerCSVDownload("reporting_data_quality_simulation_export.csv", csv);
+}
+

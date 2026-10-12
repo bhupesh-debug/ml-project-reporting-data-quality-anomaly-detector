@@ -1,0 +1,74 @@
+{
+  "rows": 3200,
+  "overrun_rate": 0.25,
+  "test_rows": 839,
+  "rule_burn_gap": {
+    "roc_auc": 0.686,
+    "pr_auc": 0.435,
+    "brier": 0.185,
+    "recall_at_top20pct": 0.355
+  },
+  "logistic": {
+    "roc_auc": 0.906,
+    "pr_auc": 0.777,
+    "brier": 0.103,
+    "recall_at_top20pct": 0.621
+  },
+  "gradient_boosting": {
+    "roc_auc": 0.899,
+    "pr_auc": 0.763,
+    "brier": 0.105,
+    "recall_at_top20pct": 0.616
+  },
+  "top_drivers": [
+    [
+      "type_non_labor",
+      0.079
+    ],
+    [
+      "prior_year_variance_pct",
+      0.06
+    ],
+    [
+      "overtime_share",
+      0.0494
+    ],
+    [
+      "change_orders_ytd",
+      0.048
+    ],
+    [
+      "burn_gap",
+      0.0268
+    ],
+    [
+      "run_rate_projection_pct",
+      0.0204
+    ],
+    [
+      "type_labor",
+      0.0198
+    ],
+    [
+      "one_time_share",
+      0.0099
+    ],
+    [
+      "vendor_spend_share",
+      0.0093
+    ],
+    [
+      "forecast_revisions",
+      0.0051
+    ]
+  ],
+  "simulation_mc_summary": {
+    "total_budget_m": 5859.110000000001,
+    "median_exposure_m": 168.88476649348075,
+    "p10_exposure_m": 117.34377618632004,
+    "p90_exposure_m": 241.24912607179377,
+    "median_incremental_savings_m": 17.481070823099746,
+    "p10_incremental_savings_m": 12.004006039804183,
+    "p90_incremental_savings_m": 25.3805904650818
+  }
+}

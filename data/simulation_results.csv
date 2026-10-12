@@ -1,0 +1,18 @@
+Project,Simulation_Type,Scenario_Name,Key_Input,Output_Measure,Output_Value,Risk_Measure,Risk_Value
+P1: Budget Overrun,Capacity Stress,Review Capacity 10%,Capacity=10%,Capture Rate,38.2%,Missed Exposure,$104.3M
+P1: Budget Overrun,Capacity Stress,Review Capacity 20%,Capacity=20%,Capture Rate,62.1%,Missed Exposure,$64.0M
+P1: Budget Overrun,Capacity Stress,Review Capacity 30%,Capacity=30%,Capture Rate,78.5%,Missed Exposure,$36.3M
+P1: Budget Overrun,Capacity Stress,Review Capacity 40%,Capacity=40%,Capture Rate,89.0%,Missed Exposure,$18.6M
+P1: Budget Overrun,"Monte Carlo (5,000 runs)",Portfolio Exposure Distribution,Total Budget=$5.86B,Median Avoided Overrun,$17.48M,P90 Exposure,$241.25M
+P2: FP&A Rolling Forecast,Deterministic Shock,Sales Headcount +20%,Headcount=1.20x,Monthly Revenue,$246.84M,Delta vs Base,-$0.78M
+P2: FP&A Rolling Forecast,Deterministic Shock,Demand Shock -18%,Systemic Shock=-18%,Monthly Revenue,$228.58M,Delta vs Base,-$19.04M
+P2: FP&A Rolling Forecast,Horizon Blending,Optimal Blend 3-Month,"Weight GBM=0.4, Seasonal=0.6",Optimal WAPE,0.0891,Pure GBM WAPE,0.1172
+P2: FP&A Rolling Forecast,"Monte Carlo (5,000 runs)",Revenue Trajectory Corridor,Macro Noise + Driver Vol,Median Revenue,$247.38M,P05 Downside Floor,$241.91M (VaR $5.71M)
+P3: Liquidity Stress,Rolling 30-Day Window,Base Case (p50),Current Buffer=2886.2,Median Coverage,1.06,Breach Rate,0.0% (31d Survival)
+P3: Liquidity Stress,Rolling 30-Day Window,Mild Stress (+25% 10d),Current Buffer=2886.2,Median Coverage,0.97,Breach Rate,79.3% (29d Survival)
+P3: Liquidity Stress,Rolling 30-Day Window,Severe Stress (p95 x1.4 10d),Current Buffer=2886.2,Median Coverage,0.78,Breach Rate,100.0% (22d Survival)
+P3: Liquidity Stress,Reverse Stress,Zero-Breach Buffer Sizing,Severe Stress Path,Required Buffer,"3,914.8 units",Buffer Shortfall,"+1,028.6 units (+35.6%)"
+P3: Liquidity Stress,"Monte Carlo (5,000 runs)",30-Day Outflow Distribution,Correlated Market Shock,Stressed Median Outflow,"3,335.1 units",Stressed Breach Prob,100.0%
+P4: Reporting Data Quality,Defect Sensitivity,Magnitude Error Sizing x10,Decimal Offset x10,IF Recall,88.2%,x2 Error Recall,18.2%
+P4: Reporting Data Quality,Capacity Planning,"3,000 Monthly Reviews","Capacity=3k, Cost=$35",Breaks Captured,"2,294 (99.1%)",Unreviewed Backlog,27 rows
+P4: Reporting Data Quality,"Monte Carlo (5,000 runs)",Daily Exception Queue Arrivals,Poisson Arrivals Vol=800,Median Daily Flags,100 rows/day,P95 Peak SLA Load,"139 rows/day ($4,865/day)"

@@ -1,5 +1,12 @@
 # Reporting Data-Quality Anomaly Detector
 
+[![Live Interactive Dashboard](https://img.shields.io/badge/Live%20Dashboard-GitHub%20Pages-success)](https://bhupesh-debug.github.io/ml-project-reporting-data-quality-anomaly-detector/)
+[![Master Portfolio Hub](https://img.shields.io/badge/Master%20Hub-Portfolio-blue)](https://bhupesh-debug.github.io/ml-portfolio-finance-analytics-hub/)
+
+**🌐 Real-Time Interactive Analytics Lab:** [https://bhupesh-debug.github.io/ml-project-reporting-data-quality-anomaly-detector/](https://bhupesh-debug.github.io/ml-project-reporting-data-quality-anomaly-detector/)
+
+---
+
 *Catch breaks in an aggregated reporting feed (duplicates, missing keys, stale postings, magnitude errors, and sign flips) before numbers reach financial reports.*
 
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](tests/)
